@@ -86,22 +86,24 @@ def vuelto(cambio, stock_bm):
     print("-"*30)
     
     for i in range(len(stock_bm)):
-        valor, stock = stock_bm[i]                                # Obtener el valor y stock de cada billete/moneda
+        valor, stock = stock_bm[i]                              # Obtener el valor y stock de cada billete/moneda
         if cambio >= valor and stock > 0:                       # Verificar si hay suficiente cambio y stock
-            cantidad = int(cambio // valor)
+            cantidad = round(int(cambio // valor))
             if cantidad > stock:
                 cantidad = stock                                # Ajustar cantidad al stock disponible
             cambio = cambio - cantidad * valor                  # Actualizar el cambio restante
             stock_bm[i][1] -= cantidad
-            print(f"{AMARILLO}{'Billetes' if valor >= 1 else 'Monedas'} de S/ {valor}:{RESET}", cantidad)
+            print(f"{AMARILLO}{'Billetes' if valor >= 1 else 'Monedas'} de S/ {valor:.2f}:{RESET}", cantidad)
     
-    if cambio > 0.0009:
+    if cambio < 0.009:
         print(f"{ROJO}No hay suficiente cambio para devolver S/ {cambio}{RESET}")
         print(f"{ROJO}Por favor, contacte al administrador de la máquina expendedora.{RESET}")
+        exit()
     print("-"*30)
 
 def modo_administrador(stock_bm, ganancias_totales=0.0):
     import time
+    from time import strftime, localtime
     print(f"{NEGRITA}Bienvenido al modo Administrador.{RESET}")
     # Aquí puedes agregar funcionalidades adicionales para el modo administrador
     print("="*40)
@@ -112,14 +114,21 @@ def modo_administrador(stock_bm, ganancias_totales=0.0):
     print("2. Reabastecer billetes y monedas")
     print("3. Recuento de ventas")
     print("4. Salir del modo Administrador")
+    print("5. Terminar programa")
     print("="*40)
     
     while True:
-        elec= int(input("Elige una opción (1-4): "))
+        elec= int(input("Elige una opción (1-5): "))
         if elec == 1:
             print(f"{NEGRITA}Stock actual de billetes y monedas:{RESET}")
             for valor, stock in stock_bm:
                 print(f"S/ {valor}: {stock} unidades")
+            with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+                archivo_registro.write("Se llamó a la función de ver stock de billetes y monedas.\n")
+                archivo_registro.write("Fecha y hora de consulta: " + strftime("%Y-%m-%d %H:%M:%S", localtime()) + "\n")
+                for valor, stock in stock_bm:
+                    archivo_registro.write(f"S/ {valor}: {stock} unidades\n")
+                archivo_registro.write("--------------------------------------------------\n")
         elif elec == 2:
             print(f"{NEGRITA}Reabastecer billetes y monedas:{RESET}")
             for i in range(len(stock_bm)):
@@ -127,14 +136,32 @@ def modo_administrador(stock_bm, ganancias_totales=0.0):
                 adicional = int(input(f"Ingrese la cantidad a agregar para S/ {valor} (actual: {stock}): "))
                 stock_bm[i][1] += adicional
             print(f"{VERDE}Reabastecimiento completado.{RESET}")
+            with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+                archivo_registro.write("Se llamó a la función de reabastecer billetes y monedas.\n")
+                archivo_registro.write("Fecha y hora de reabastecimiento: " + strftime("%Y-%m-%d %H:%M:%S", localtime()) + "\n")
+                for valor, stock in stock_bm:
+                    archivo_registro.write(f"S/ {valor}: {stock} unidades\n")
+                archivo_registro.write("--------------------------------------------------\n")
             continue
         elif elec == 3:
             print(f"{NEGRITA}Recuento de ventas:{RESET}")
             # Aquí puedes implementar la lógica para el recuento de ventas
             print(f"{VERDE}Las ganancias totales son: S/ {ganancias_totales}{RESET}")
+            with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+                archivo_registro.write("Se llamó a la función de recuento de ventas.\n")
+                archivo_registro.write("Fecha y hora de recuento: " + strftime("%Y-%m-%d %H:%M:%S", localtime()) + "\n")
+                archivo_registro.write(f"Ganancias totales: S/ {ganancias_totales}\n")
+                archivo_registro.write("--------------------------------------------------\n")
         elif elec == 4:
             print(f"{VERDE}Saliendo del modo Administrador...{RESET}")
             break
+        elif elec == 5:
+            print(f"{ROJO}Terminando programa...{RESET}")
+            with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+                archivo_registro.write("El programa fue terminado por el administrador.\n")
+                archivo_registro.write("Fecha y hora de terminación: " + strftime("%Y-%m-%d %H:%M:%S", localtime()) + "\n")
+                archivo_registro.write("--------------------------------------------------\n\n")
+            exit()
             
 
 

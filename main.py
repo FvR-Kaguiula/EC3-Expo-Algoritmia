@@ -1,4 +1,7 @@
 from funciones import mostrar_menu, elección_producto, vuelto, modo_administrador
+from os import system
+# Añadir al archivo de registro la hora de cada transacción
+from time import strftime, localtime
 
 # Colores de Terminal
 ROJO = "\033[91m"
@@ -7,6 +10,13 @@ AMARILLO = "\033[93m"
 AZUL = "\033[94m"
 RESET = "\033[0m"
 NEGRITA = "\033[1m"
+
+# Inicializar el archivo de registro con utf-8
+with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+    archivo_registro.write(f"Registro de la máquina expendedora\n")
+    archivo_registro.write(f"Fecha de inicio: {strftime('%Y-%m-%d', localtime())}\n")
+    archivo_registro.write(f"Hora de inicio: {strftime('%H:%M:%S', localtime())}\n")
+    archivo_registro.write("--------------------------------------------------\n")
 
 password = 20122025
 ganancias_totales = 0.0
@@ -39,12 +49,31 @@ while True:
                 
                 if cambio == 0:
                     print(f"{VERDE}Compra exitosa.{RESET}")
+                    print("\n--- Transacción finalizada ---\n")
+                    
+                    ganancias_totales += costo
+                    # Registrar la transacción en el archivo de registro en cada linea
+                    with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+                        hora_actual = strftime("%Y-%m-%d %H:%M:%S", localtime())
+                        archivo_registro.write(f"{hora_actual}\n")
+                        archivo_registro.write(f"Producto: {producto}\nCosto: S/ {costo}\nDinero ingresado: S/ {dinero_ing}\nCambio devuelto: S/ {cambio}\nGanancias totales: S/ {ganancias_totales}\n")
+                        archivo_registro.write("--------------------------------------------------\n")
+                    time.sleep(2)
+                    continue
                 else:
                     print(f"{VERDE}Compra exitosa. Su cambio es: S/ {cambio}{RESET}\n")
+                    
                     vuelto(cambio, stock_bm)
                     print("\n--- Transacción finalizada ---\n")
-                    time.sleep(2)
+                    
                     ganancias_totales += costo
+                    # Registrar la transacción en el archivo de registro en cada linea
+                    with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
+                        hora_actual = strftime("%Y-%m-%d %H:%M:%S", localtime())
+                        archivo_registro.write(f"[{hora_actual}]")
+                        archivo_registro.write(f"Producto: {producto}\nCosto: S/ {costo}\nDinero ingresado: S/ {dinero_ing}\nCambio devuelto: S/ {cambio}\nGanancias totales: S/ {ganancias_totales}\n")
+                        archivo_registro.write("--------------------------------------------------\n")
+                    time.sleep(2)
                     continue
                 
             else:
