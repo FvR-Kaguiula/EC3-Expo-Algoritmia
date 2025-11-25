@@ -1,4 +1,3 @@
-from code import ganancias_totales
 # Código de colores para la terminal
 ROJO = "\033[91m"
 VERDE = "\033[92m"
@@ -101,7 +100,7 @@ def vuelto(cambio, stock_bm):
         print(f"{ROJO}Por favor, contacte al administrador de la máquina expendedora.{RESET}")
     print("-"*30)
 
-def modo_administrador(stock_bm):
+def modo_administrador(stock_bm, ganancias_totales=0.0):
     import time
     print(f"{NEGRITA}Bienvenido al modo Administrador.{RESET}")
     # Aquí puedes agregar funcionalidades adicionales para el modo administrador

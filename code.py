@@ -56,7 +56,7 @@ while True:
             continue
     if dinero_ing == password:
         print(f"{VERDE}Contraseña correcta. Accediendo al modo Administrador ...{RESET}")
-        modo_administrador(stock_bm)
+        modo_administrador(stock_bm, ganancias_totales)
         continue
         
     else:
