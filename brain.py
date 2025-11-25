@@ -1,4 +1,4 @@
-from main import ganancias_totales
+from code import ganancias_totales
 # Código de colores para la terminal
 ROJO = "\033[91m"
 VERDE = "\033[92m"
