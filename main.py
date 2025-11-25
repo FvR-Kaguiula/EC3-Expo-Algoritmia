@@ -1,4 +1,4 @@
-from brain import mostrar_menu, elección_producto, vuelto, modo_administrador
+from funciones import mostrar_menu, elección_producto, vuelto, modo_administrador
 
 # Colores de Terminal
 ROJO = "\033[91m"
