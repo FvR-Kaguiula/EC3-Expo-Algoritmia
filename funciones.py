@@ -1,3 +1,4 @@
+from main import ganancias_totales
 # Código de colores para la terminal
 ROJO = "\033[91m"
 VERDE = "\033[92m"
@@ -110,11 +111,12 @@ def modo_administrador(stock_bm):
     print(f"{VERDE}Funcionalidades de administrador{RESET}")
     print("1. Ver stock de billetes y monedas")
     print("2. Reabastecer billetes y monedas")
-    print("3. Salir del modo Administrador")
+    print("3. Recuento de ventas")
+    print("4. Salir del modo Administrador")
     print("="*40)
     
     while True:
-        elec= int(input("Elige una opción (1-3): "))
+        elec= int(input("Elige una opción (1-4): "))
         if elec == 1:
             print(f"{NEGRITA}Stock actual de billetes y monedas:{RESET}")
             for valor, stock in stock_bm:
@@ -128,8 +130,13 @@ def modo_administrador(stock_bm):
             print(f"{VERDE}Reabastecimiento completado.{RESET}")
             continue
         elif elec == 3:
+            print(f"{NEGRITA}Recuento de ventas:{RESET}")
+            # Aquí puedes implementar la lógica para el recuento de ventas
+            print(f"{VERDE}Las ganancias totales son: S/ {ganancias_totales}{RESET}")
+        elif elec == 4:
             print(f"{VERDE}Saliendo del modo Administrador...{RESET}")
             break
+            
 
 
 # Para quitar las indentaciones de muchas linas de código sin hacerlo una por una

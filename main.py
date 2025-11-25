@@ -9,6 +9,7 @@ RESET = "\033[0m"
 NEGRITA = "\033[1m"
 
 password = 20122025
+ganancias_totales = 0.0
 
 stock_bm=[
         [50 , 5],
@@ -43,6 +44,7 @@ while True:
                     vuelto(cambio, stock_bm)
                     print("\n--- Transacción finalizada ---\n")
                     time.sleep(2)
+                    ganancias_totales += costo
                     continue
                 
             else:
