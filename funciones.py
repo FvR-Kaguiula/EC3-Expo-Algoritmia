@@ -180,8 +180,5 @@ def modo_administrador(stock_bm, ganancias_totales=0.0):
                 archivo_registro.write("Fecha y hora de terminación: " + strftime("%Y-%m-%d %H:%M:%S", localtime()) + "\n")
                 archivo_registro.write("--------------------------------------------------\n\n")
             exit()
-            
-
-
 # Para quitar las indentaciones de muchas linas de código sin hacerlo una por una
 # Seleccionar todo el bloque de código y presionar Shift + Tab
