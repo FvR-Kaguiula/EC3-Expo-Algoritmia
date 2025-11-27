@@ -73,6 +73,22 @@ def elección_producto():
         
         # Validar si la opción está dentro del rango válido
         indice= opcion - 1
+        
+        # Módulo de utilidades para la máquina expendedora.
+
+        """
+        Contiene:
+        - constantes de color para la terminal
+        - `mostrar_menu()`          -> muestra el menú de productos
+        - `elección_producto()`     -> pide la selección y valida la opción
+        - `vuelto()`                -> calcula y desgloza el cambio en billetes/monedas
+        - `modo_administrador()`    -> funciones de administración (stock/ventas/reabastecer)
+
+        Notas:
+        - El cálculo del vuelto trabaja internamente en centavos (enteros) para evitar
+            problemas de precisión con punto flotante.
+        """
+
         if not (0 <= indice < len(productos)):
             print("Opción no válida. Inténtalo de nuevo.")
             continue
@@ -118,6 +134,7 @@ def modo_administrador(stock_bm, ganancias_totales=0.0):
     print("5. Terminar programa")
     print("="*40)
     
+    # Abrimos el archivo de registro con modo 'a' para agregar información sin borrar lo existente
     while True:
         elec= int(input("Elige una opción (1-5): "))
         if elec == 1:
