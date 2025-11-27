@@ -1,3 +1,19 @@
+# Módulo de utilidades para la máquina expendedora.
+
+"""
+    Contiene:
+    - Constantes de color para la terminal
+    - `mostrar_menu()`          -> muestra el menú de productos
+    - `elección_producto()`     -> pide la selección y valida la opción
+    - `vuelto()`                -> calcula y desgloza el cambio en billetes/monedas
+    - `modo_administrador()`    -> funciones de administración (stock/ventas/reabastecer)
+
+    Notas:
+    - El cálculo del vuelto trabaja internamente en centavos (enteros) para evitar
+        problemas de precisión con punto flotante.
+    - El módulo asume que el archivo de registro "registro_maquina_expendedora.txt" existe y es accesible para escritura.
+"""
+
 # Código de colores para la terminal
 ROJO = "\033[91m"
 VERDE = "\033[92m"
@@ -73,21 +89,6 @@ def elección_producto():
         
         # Validar si la opción está dentro del rango válido
         indice= opcion - 1
-        
-        # Módulo de utilidades para la máquina expendedora.
-
-        """
-        Contiene:
-        - constantes de color para la terminal
-        - `mostrar_menu()`          -> muestra el menú de productos
-        - `elección_producto()`     -> pide la selección y valida la opción
-        - `vuelto()`                -> calcula y desgloza el cambio en billetes/monedas
-        - `modo_administrador()`    -> funciones de administración (stock/ventas/reabastecer)
-
-        Notas:
-        - El cálculo del vuelto trabaja internamente en centavos (enteros) para evitar
-            problemas de precisión con punto flotante.
-        """
 
         if not (0 <= indice < len(productos)):
             print("Opción no válida. Inténtalo de nuevo.")
@@ -122,7 +123,6 @@ def modo_administrador(stock_bm, ganancias_totales=0.0):
     import time
     from time import strftime, localtime
     print(f"{NEGRITA}Bienvenido al modo Administrador.{RESET}")
-    # Aquí puedes agregar funcionalidades adicionales para el modo administrador
     print("="*40)
     print("MODO ADMINISTRADOR")
     print("-"*40)
