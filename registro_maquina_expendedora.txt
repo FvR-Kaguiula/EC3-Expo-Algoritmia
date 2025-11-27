@@ -33,3 +33,11 @@ Ganancias totales: S/ 0.0
 El programa fue terminado por el administrador.
 Fecha y hora de terminación: 2025-11-25 12:34:56
 --------------------------------------------------
+REGISTRO DE LA MÁQUINA EXPENDEDORA
+Fecha de inicio: 2025-11-27
+Hora de inicio: 14:05:44
+--------------------------------------------------
+REGISTRO DE LA MÁQUINA EXPENDEDORA
+Fecha de inicio: 2025-11-27
+Hora de inicio: 14:05:53
+--------------------------------------------------

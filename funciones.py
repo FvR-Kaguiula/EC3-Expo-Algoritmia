@@ -85,15 +85,16 @@ def vuelto(cambio, stock_bm):
     print(f"{NEGRITA}Desglose de su cambio{RESET}")
     print("-"*30)
     
-    for i in range(len(stock_bm)):
-        valor, stock = stock_bm[i]                              # Obtener el valor y stock de cada billete/moneda
-        if cambio >= valor and stock > 0:                       # Verificar si hay suficiente cambio y stock
-            cantidad = round(int(cambio // valor))
-            if cantidad > stock:
-                cantidad = stock                                # Ajustar cantidad al stock disponible
-            cambio = cambio - cantidad * valor                  # Actualizar el cambio restante
-            stock_bm[i][1] -= cantidad
-            print(f"{AMARILLO}{'Billetes' if valor >= 1 else 'Monedas'} de S/ {valor:.2f}:{RESET}", cantidad)
+    while cambio > 0.009:  # Mientras quede cambio por devolver
+        for i in range(len(stock_bm)):
+            valor, stock = stock_bm[i]                              # Obtener el valor y stock de cada billete/moneda
+            if cambio >= valor and stock > 0:                       # Verificar si hay suficiente cambio y stock
+                cantidad = round(int(cambio // valor))
+                if cantidad > stock:
+                    cantidad = stock                                # Ajustar cantidad al stock disponible
+                cambio = cambio - cantidad * valor                  # Actualizar el cambio restante
+                stock_bm[i][1] -= cantidad
+                print(f"{AMARILLO}{'Billetes' if valor >= 1 else 'Monedas'} de S/ {valor:.2f}:{RESET}", cantidad)
     
     if cambio < 0.009:
         print(f"{ROJO}No hay suficiente cambio para devolver S/ {cambio}{RESET}")

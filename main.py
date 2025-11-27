@@ -13,7 +13,7 @@ NEGRITA = "\033[1m"
 
 # Inicializar el archivo de registro con utf-8
 with open("registro_maquina_expendedora.txt", "a", encoding="utf-8") as archivo_registro:
-    archivo_registro.write(f"Registro de la máquina expendedora\n")
+    archivo_registro.write(f"REGISTRO DE LA MÁQUINA EXPENDEDORA\n")
     archivo_registro.write(f"Fecha de inicio: {strftime('%Y-%m-%d', localtime())}\n")
     archivo_registro.write(f"Hora de inicio: {strftime('%H:%M:%S', localtime())}\n")
     archivo_registro.write("--------------------------------------------------\n")
