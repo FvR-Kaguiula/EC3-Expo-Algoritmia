@@ -113,7 +113,7 @@ def vuelto(cambio, stock_bm):
                 stock_bm[i][1] -= cantidad
                 print(f"{AMARILLO}{'Billetes' if valor >= 1 else 'Monedas'} de S/ {valor:.2f}:{RESET}", cantidad)
     
-    if cambio < 0.009:
+    if cambio > 0.009:
         print(f"{ROJO}No hay suficiente cambio para devolver S/ {cambio}{RESET}")
         print(f"{ROJO}Por favor, contacte al administrador de la máquina expendedora.{RESET}")
         exit()

@@ -3,24 +3,6 @@ from os import system
 # Funciones para fecha/hora en los registros
 from time import strftime, localtime
 
-# Código de documentación del módulo
-
-"""
-Módulo principal de la máquina expendedora.
-    Contiene:
-    - inicialización del archivo de registro
-    - bucle principal de atención al cliente
-    - manejo de modo administrador
-
-    Notas:
-    - El módulo importa funciones del archivo `funciones.py` para modularidad.
-    - El bucle principal atiende continuamente hasta que el usuario decide salir, luego se reinicia.
-    - El modo administrador permite gestionar stock y ver ventas acumuladas.
-    - El archivo "registro_maquina_expendedora.txt" es creado y actualizado con cada operación.
-        - Cada registro incluye marcas de tiempo, producto vendido, costo, dinero ingresado, cambio devuelto y ganancias totales.
-    - El monto máximo permitido para clientes normales es S/100.
-"""
-
 # Colores de terminal: utilizados para resaltar mensajes (error/éxito/advertencia)
 ROJO = "\033[91m"
 VERDE = "\033[92m"
